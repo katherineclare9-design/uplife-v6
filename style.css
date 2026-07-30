@@ -1,6 +1,17 @@
 /* =====================
-   UpLift Global Style
-   ===================== */
+   FONTS
+===================== */
+
+
+/*
+ Fun athletic style:
+ Marker + distressed feel
+*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Bungee&display=swap');
+
+
 
 
 *{
@@ -11,19 +22,25 @@
 
 
 
+
+
 body{
 
     margin:0;
 
     padding:0;
 
-    font-family:"Permanent Marker", cursive;
+    font-family:'Bungee', sans-serif;
 
-    background:#fff5fb;
+    background:#ffe6f2;
 
     color:#333;
 
+    min-height:100vh;
+
 }
+
+
 
 
 
@@ -31,7 +48,7 @@ h1,
 h2,
 h3{
 
-    font-family:"Permanent Marker", cursive;
+    font-family:'Permanent Marker', cursive;
 
     letter-spacing:1px;
 
@@ -39,102 +56,28 @@ h3{
 
 
 
-h1{
-
-    text-align:center;
-
-    font-size:38px;
-
-}
-
-
-
-p{
-
-    font-family:"Bangers", cursive;
-
-    font-size:18px;
-
-    letter-spacing:1px;
-
-}
-
-
-
-/* =====================
-   APP CONTAINER
-   ===================== */
-
-
-#app{
-
-    max-width:500px;
-
-    margin:auto;
-
-    padding:20px;
-
-    padding-bottom:100px;
-
-}
-
-
-
-/* =====================
-   CARDS
-   ===================== */
-
-
-.card{
-
-    background:white;
-
-    border-radius:25px;
-
-    padding:20px;
-
-    margin:15px 0;
-
-    box-shadow:
-
-    0 8px 20px rgba(0,0,0,0.08);
-
-    border:3px solid #ffd6ec;
-
-}
-
-
-
-
-
-/* =====================
-   BUTTONS
-   ===================== */
 
 
 button{
 
-    font-family:"Permanent Marker", cursive;
-
-    font-size:16px;
-
-    border:none;
-
-    border-radius:20px;
+    font-family:'Permanent Marker', cursive;
 
     padding:12px 18px;
 
-    margin:5px;
+    border-radius:15px;
+
+    border:none;
 
     cursor:pointer;
 
-    background:#ff75b5;
+    font-size:16px;
 
-    color:white;
+    margin:5px;
 
     transition:.2s;
 
 }
+
 
 
 
@@ -148,37 +91,33 @@ button:hover{
 
 
 
-/* =====================
-   INPUTS
-   ===================== */
-
-
 input,
 select,
 textarea{
 
-
-    width:100%;
+    width:90%;
 
     padding:12px;
 
-    border-radius:15px;
+    margin:8px;
 
-    border:2px solid #ffd0e7;
+    border-radius:12px;
 
-    font-family:"Permanent Marker", cursive;
+    border:none;
 
-    margin-top:5px;
+    font-family:'Bungee', sans-serif;
+
+    font-size:15px;
 
 }
+
+
 
 
 
 textarea{
 
-    min-height:120px;
-
-    resize:none;
+    min-height:80px;
 
 }
 
@@ -186,50 +125,15 @@ textarea{
 
 
 
-/* =====================
-   BOTTOM NAV
-   ===================== */
-
-
-.bottom-nav{
-
-    position:fixed;
-
-    bottom:0;
-
-    left:50%;
-
-    transform:translateX(-50%);
+#app{
 
     width:100%;
 
     max-width:500px;
 
-    background:white;
+    margin:auto;
 
-    border-top:3px solid #ffd6ec;
-
-    display:flex;
-
-    justify-content:space-around;
-
-    padding:10px;
-
-    z-index:10;
-
-}
-
-
-
-.bottom-nav button{
-
-    background:#fff0f8;
-
-    color:#ff5fa7;
-
-    font-size:24px;
-
-    padding:10px;
+    padding:20px;
 
 }
 
@@ -238,8 +142,33 @@ textarea{
 
 
 /* =====================
-   WORKOUT CHECKBOXES
-   ===================== */
+   CARDS
+===================== */
+
+
+
+.card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    margin:18px 0;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+
+
+
+
+/* =====================
+   WORKOUT ITEMS
+===================== */
+
 
 
 .workout-item{
@@ -248,9 +177,7 @@ textarea{
 
     align-items:center;
 
-    gap:10px;
-
-    background:#fff7fc;
+    gap:12px;
 
     padding:12px;
 
@@ -258,7 +185,11 @@ textarea{
 
     border-radius:15px;
 
+    background:#fff0f7;
+
 }
+
+
 
 
 
@@ -272,35 +203,61 @@ textarea{
 
 
 
+
+
 /* =====================
-   THEMES
-   ===================== */
+   BOTTOM NAV
+===================== */
 
 
-.regular-theme{
 
-    background:#fff5fb;
+.bottom-nav{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:5px;
+
+    padding:10px;
+
+    background:white;
+
+    box-shadow:0 -5px 15px rgba(0,0,0,.15);
 
 }
 
 
 
-.vacation-theme{
-
-    background:#f3fbff;
-
-}
 
 
+.bottom-nav button{
 
-.period-theme{
+    font-size:22px;
 
-    background:#fff0f3;
+    padding:10px;
+
+    border-radius:50%;
 
 }
+
+
+
+
+
+
 /* =====================
-   TROPHY ROOM
-   ===================== */
+   BADGES
+===================== */
+
 
 
 .badge-gallery{
@@ -315,87 +272,49 @@ textarea{
 
 
 
+
+
 .badge-card{
-
-    background:white;
-
-    border-radius:25px;
-
-    padding:18px;
 
     text-align:center;
 
-    border:3px solid #eee;
+    padding:20px;
 
-    min-height:220px;
+    border-radius:25px;
 
-    transition:.3s;
+    background:white;
 
-    position:relative;
-
-    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
 
 }
 
 
 
-.badge-card h2{
-
-    font-size:45px;
-
-    margin:5px;
-
-}
-
-
-
-.badge-card h3{
-
-    font-size:20px;
-
-}
-
-
-
-.badge-card p{
-
-    font-size:15px;
-
-}
-
-
-
-
-/* =====================
-   LOCKED BADGES
-   ===================== */
 
 
 .badge-card.locked{
 
-    filter:grayscale(100%);
+    opacity:.45;
 
-    opacity:.55;
-
-    background:#e8e8e8;
-
-    border-color:#ccc;
+    filter:grayscale(1);
 
 }
 
 
 
-.badge-card.locked::after{
 
-    content:"🔒 LOCKED";
 
-    position:absolute;
+.badge-card.unlocked{
 
-    top:10px;
+    transform:scale(1.02);
 
-    right:10px;
+}
 
-    font-family:"Bangers", cursive;
+
+
+
+
+.rarity{
 
     font-size:14px;
 
@@ -404,46 +323,340 @@ textarea{
 
 
 
+
+
+
+
 /* =====================
-   UNLOCKED BADGES
-   ===================== */
+   DIARY
+===================== */
+
+
+
+.diary-entry{
+
+    background:#fff4fa;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    margin:12px 0;
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+   NUTRITION
+===================== */
+
+
+
+.water-display{
+
+    font-size:30px;
+
+    letter-spacing:4px;
+
+}
+
+
+
+
+
+.nutrition-entry{
+
+    background:#fff7fb;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    margin:10px 0;
+
+}
+/* =====================
+   REGULAR MODE
+===================== */
+
+
+body.regular-theme{
+
+    background:#ffe6f2;
+
+    color:#333;
+
+}
+
+
+
+body.regular-theme .card{
+
+    background:#ffffff;
+
+}
+
+
+
+body.regular-theme button{
+
+    background:#ff8fcf;
+
+    color:white;
+
+}
+
+
+
+body.regular-theme .bottom-nav{
+
+    background:#ffffff;
+
+}
+
+
+
+
+
+
+
+/* =====================
+   VACATION MODE
+===================== */
+
+
+
+body.vacation-theme{
+
+    background:#ffffff;
+
+    color:#333;
+
+}
+
+
+
+
+
+body.vacation-theme .card{
+
+    background:#faf8f2;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+
+
+
+body.vacation-theme button{
+
+    background:#eee8dc;
+
+    color:#555;
+
+    border:1px solid #ddd2bd;
+
+}
+
+
+
+
+
+body.vacation-theme input,
+body.vacation-theme select,
+body.vacation-theme textarea{
+
+    background:#fffdf8;
+
+    color:#333;
+
+    border:1px solid #ddd2bd;
+
+}
+
+
+
+
+
+body.vacation-theme .workout-item{
+
+    background:#f8f4eb;
+
+}
+
+
+
+
+
+body.vacation-theme .diary-entry{
+
+    background:#fffaf0;
+
+}
+
+
+
+
+
+body.vacation-theme .bottom-nav{
+
+    background:#faf8f2;
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+   PERIOD MODE
+===================== */
+
+
+
+body.period-theme{
+
+    background:#8b0000;
+
+    color:white;
+
+}
+
+
+
+
+
+body.period-theme .card{
+
+    background:#a30000;
+
+    color:white;
+
+}
+
+
+
+
+
+body.period-theme button{
+
+    background:#57000d;
+
+    color:white;
+
+    border:1px solid #3a0008;
+
+}
+
+
+
+
+
+body.period-theme input,
+body.period-theme select,
+body.period-theme textarea{
+
+    background:#fff5f5;
+
+    color:#550000;
+
+}
+
+
+
+
+
+body.period-theme .workout-item{
+
+    background:#b30000;
+
+    color:white;
+
+}
+
+
+
+
+
+body.period-theme .diary-entry{
+
+    background:#920000;
+
+    color:white;
+
+}
+
+
+
+
+
+body.period-theme .badge-card{
+
+    background:#a30000;
+
+    color:white;
+
+}
+
+
+
+
+
+body.period-theme .bottom-nav{
+
+    background:#57000d;
+
+}
+
+
+
+body.period-theme .bottom-nav button{
+
+    background:#800014;
+
+    color:white;
+
+}
+/* =====================
+   BADGE POLISH
+===================== */
+
+
+.badge-card{
+
+    transition:.25s;
+
+}
+
+
+
+.badge-card:hover{
+
+    transform:translateY(-5px) scale(1.03);
+
+}
+
+
+
 
 
 .badge-card.unlocked{
 
-    animation:badgeGlow 2s infinite alternate;
+    border:3px solid #ffd700;
 
-}
-
-
-
-@keyframes badgeGlow{
-
-    from{
-
-        box-shadow:
-
-        0 0 10px rgba(255,105,180,.3);
-
-    }
-
-
-    to{
-
-        box-shadow:
-
-        0 0 25px rgba(255,105,180,.8);
-
-    }
-
-}
-
-
-
-
-.badge-card.unlocked:hover{
-
-    transform:translateY(-5px) rotate(-1deg);
+    box-shadow:0 0 20px rgba(255,215,0,.4);
 
 }
 
@@ -451,82 +664,9 @@ textarea{
 
 
 
+.badge-card.locked h3{
 
-/* =====================
-   RARITIES
-   ===================== */
-
-
-.common{
-
-    border-color:#cfcfcf;
-
-}
-
-
-
-.rare{
-
-    border-color:#70b7ff;
-
-}
-
-
-
-.epic{
-
-    border-color:#c77dff;
-
-}
-
-
-
-.legendary{
-
-    border-color:#ffca3a;
-
-    animation:legendaryPulse 1.5s infinite alternate;
-
-}
-
-
-
-
-@keyframes legendaryPulse{
-
-
-from{
-
-    box-shadow:0 0 10px rgba(255,200,50,.4);
-
-}
-
-
-to{
-
-    box-shadow:0 0 30px rgba(255,200,50,.9);
-
-}
-
-
-}
-
-
-
-
-.rarity{
-
-    display:inline-block;
-
-    padding:6px 12px;
-
-    border-radius:20px;
-
-    background:#fff0f8;
-
-    font-family:"Bangers",cursive;
-
-    font-size:16px;
+    color:#777;
 
 }
 
@@ -538,7 +678,8 @@ to{
 
 /* =====================
    PROGRESS BARS
-   ===================== */
+===================== */
+
 
 
 .progress-bar{
@@ -547,7 +688,7 @@ to{
 
     height:18px;
 
-    background:#eee;
+    background:#ddd;
 
     border-radius:20px;
 
@@ -559,19 +700,18 @@ to{
 
 
 
+
+
 .progress-fill{
 
     height:100%;
 
-    width:0%;
-
-    background:#ff75b5;
-
     border-radius:20px;
 
-    transition:1s;
+    background:#ff8fcf;
 
 }
+
 
 
 
@@ -579,56 +719,54 @@ to{
 
 
 /* =====================
-   NEXT BADGE CARD
-   ===================== */
+   DIARY IMPROVEMENTS
+===================== */
 
 
-.card h2{
 
-    font-family:"Permanent Marker",cursive;
+.diary-entry{
+
+    border-left:6px solid #ff8fcf;
 
 }
+
+
+
+
+
+.diary-entry h3{
+
+    margin-top:0;
+
+}
+
+
+
+
+
+.diary-entry p{
+
+    margin:8px 0;
+
+}
+
+
 
 
 
 
 
 /* =====================
-   SMALL SCREENS
-   ===================== */
-
-
-@media(max-width:400px){
-
-
-.badge-gallery{
-
-    grid-template-columns:1fr;
-
-}
+   NUTRITION IMPROVEMENTS
+===================== */
 
 
 
-h1{
+.water-display{
 
-    font-size:32px;
+    text-align:center;
 
-}
-
-
-}
-/* =====================
-   NUTRITION PAGE
-   ===================== */
-
-
-#app .nutrition-card{
-
-    background:white;
-
-    border-radius:25px;
-
-    padding:20px;
+    padding:10px;
 
 }
 
@@ -636,35 +774,30 @@ h1{
 
 
 
-/* Nutrition sections */
+#foodName,
+#foodCalories,
+#foodMeal,
+#foodNote{
 
-
-.card h2{
-
-    margin-top:5px;
+    border:2px solid #ffd1e8;
 
 }
+
+
 
 
 
 
 
 /* =====================
-   MACROS
-   ===================== */
-
-
-.card p{
-
-    line-height:1.5;
-
-}
+   BUTTON GROUPS
+===================== */
 
 
 
-.card p::first-letter{
+.card button{
 
-    font-size:20px;
+    min-width:110px;
 
 }
 
@@ -673,84 +806,21 @@ h1{
 
 
 /* =====================
-   WATER TRACKER
-   ===================== */
-
-
-button{
-
-    box-shadow:
-
-    0 5px 10px rgba(0,0,0,.08);
-
-}
+   CHECKBOX STYLE
+===================== */
 
 
 
-button:active{
+input[type="checkbox"]{
 
-    transform:scale(.95);
+    width:22px;
+
+    height:22px;
+
+    accent-color:#ff69b4;
 
 }
 
-
-
-
-
-/* =====================
-   MEAL DISPLAY
-   ===================== */
-
-
-.card p{
-
-    background:#fff7fc;
-
-    padding:8px;
-
-    border-radius:12px;
-
-}
-
-
-
-
-
-/* =====================
-   FOOD LISTS
-   ===================== */
-
-
-.card input + button{
-
-    margin-top:10px;
-
-}
-
-
-
-.card h2{
-
-    color:#ff5fa7;
-
-}
-
-
-
-
-
-/* =====================
-   NOTES BOX
-   ===================== */
-
-
-textarea{
-
-    background:#fffaff;
-
-    color:#333;
-
-}
 
 
 
@@ -758,119 +828,12 @@ textarea{
 
 
 /* =====================
-   ARFID SUPPORT STYLE
-   ===================== */
+   SCROLL / MOBILE
+===================== */
 
 
-.arfid-toggle{
 
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    background:#f0fff7;
-
-    padding:15px;
-
-    border-radius:20px;
-
-    border:3px solid #b8f2d0;
-
-}
-
-
-
-.arfid-toggle input{
-
-    width:auto;
-
-}
-
-
-
-
-
-/* =====================
-   EXTRA APP DETAILS
-   ===================== */
-
-
-hr{
-
-    border:none;
-
-    border-top:2px dashed #ffd6ec;
-
-    margin:20px 0;
-
-}
-
-
-
-
-span{
-
-    font-family:"Permanent Marker",cursive;
-
-}
-
-
-
-
-/* =====================
-   ANIMATIONS
-   ===================== */
-
-
-.card{
-
-    animation:cardEnter .3s ease;
-
-}
-
-
-
-@keyframes cardEnter{
-
-
-from{
-
-    opacity:0;
-
-    transform:translateY(10px);
-
-}
-
-
-to{
-
-    opacity:1;
-
-    transform:translateY(0);
-
-}
-
-
-}
-
-
-
-
-
-
-/* =====================
-   MOBILE POLISH
-   ===================== */
-
-
-@media(max-width:500px){
-
-
-#app{
-
-    padding:15px;
+body{
 
     padding-bottom:90px;
 
@@ -878,89 +841,123 @@ to{
 
 
 
-button{
 
-    width:auto;
+
+@media(max-width:500px){
+
+
+
+    #app{
+
+        padding:15px;
+
+    }
+
+
+
+
+
+    h1{
+
+        font-size:30px;
+
+    }
+
+
+
+
+
+    .badge-gallery{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+
+
+    .bottom-nav button{
+
+        font-size:18px;
+
+    }
+
+
 
 }
 
 
-
-.card{
-
-    padding:15px;
-
-}
-
-
-
-input,
-select,
-textarea{
-
-    font-size:16px;
-
-}
-
-
-
-.bottom-nav button{
-
-    font-size:22px;
-
-}
-
-
-}
 
 
 
 
 
 /* =====================
-   FUN DISTRESSED ACCENTS
-   ===================== */
+   PERIOD MODE OVERRIDES
+===================== */
 
 
-h1::after{
+body.period-theme .progress-fill{
 
-
-content:" ✦";
-
-
-font-family:"Bangers",cursive;
-
+    background:#ffcccc;
 
 }
 
 
 
-h2::after{
 
 
-content:"";
+body.period-theme .diary-entry{
 
+    border-left:6px solid #ffcccc;
 
 }
+
+
+
+
+
+body.period-theme input[type="checkbox"]{
+
+    accent-color:#ffcccc;
+
+}
+
+
+
 
 
 
 
 /* =====================
-   SCROLL STYLE
-   ===================== */
+   VACATION MODE OVERRIDES
+===================== */
 
 
-::-webkit-scrollbar{
 
-    width:8px;
+body.vacation-theme .progress-fill{
+
+    background:#d8c7a5;
 
 }
 
 
 
-::-webkit-scrollbar-thumb{
 
-    border-radius:20px;
+
+body.vacation-theme .diary-entry{
+
+    border-left:6px solid #d8c7a5;
+
+}
+
+
+
+
+
+body.vacation-theme input[type="checkbox"]{
+
+    accent-color:#d8c7a5;
 
 }
