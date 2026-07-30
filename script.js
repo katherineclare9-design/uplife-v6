@@ -216,6 +216,70 @@ function completeWorkout(workoutName){
 
 
 }
+// =====================
+// NUTRITION
+// =====================
+
+
+function addFood(meal){
+
+
+    let food = prompt("Enter food:");
+
+    if(!food){
+        return;
+    }
+
+
+
+    if(!userData.nutrition){
+
+
+        userData.nutrition = {
+
+            calories:0,
+
+            protein:0,
+
+            carbs:0,
+
+            fat:0,
+
+            water:0,
+
+            breakfast:[],
+
+            lunch:[],
+
+            dinner:[],
+
+            snacks:[]
+
+        };
+
+
+    }
+
+
+
+    userData.nutrition[meal].push(food);
+
+
+
+    saveUserData();
+
+
+
+    showPage("nutrition");
+
+
+}
+
+
+
+
+
+
 
 // =====================
 // PAGE DISPLAY
@@ -456,14 +520,7 @@ onchange="completeWorkout('${item}')"
 
 
 }
-
-
-
-
-
-
-
-// PROFILE
+    // PROFILE
 
 if(page === "profile"){
 
@@ -596,6 +653,119 @@ content = `
 
 }
 
+
+
+
+
+
+
+// NUTRITION PAGE
+
+if(page === "nutrition"){
+
+
+let nutrition = userData.nutrition || {
+
+    calories:0,
+    protein:0,
+    carbs:0,
+    fat:0,
+    water:0,
+    breakfast:[],
+    lunch:[],
+    dinner:[],
+    snacks:[]
+
+};
+
+
+
+content = `
+
+
+<h1>🥗 Nutrition</h1>
+
+
+<div class="card">
+
+
+<h3>Daily Stats</h3>
+
+
+<p>🔥 Calories: ${nutrition.calories}</p>
+
+<p>💪 Protein: ${nutrition.protein}g</p>
+
+<p>🍞 Carbs: ${nutrition.carbs}g</p>
+
+<p>🥑 Fat: ${nutrition.fat}g</p>
+
+<p>💧 Water: ${nutrition.water} oz</p>
+
+
+</div>
+
+
+
+<div class="card">
+
+
+<h3>Add Food</h3>
+
+
+<button onclick="addFood('breakfast')">
+
+🍳 Breakfast
+
+</button>
+
+
+<button onclick="addFood('lunch')">
+
+🥪 Lunch
+
+</button>
+
+
+<button onclick="addFood('dinner')">
+
+🍝 Dinner
+
+</button>
+
+
+<button onclick="addFood('snacks')">
+
+🍎 Snack
+
+</button>
+
+
+</div>
+
+
+
+<div class="card">
+
+
+<h3>Today's Food</h3>
+
+
+<p>🍳 Breakfast: ${nutrition.breakfast.join(", ")}</p>
+
+<p>🥪 Lunch: ${nutrition.lunch.join(", ")}</p>
+
+<p>🍝 Dinner: ${nutrition.dinner.join(", ")}</p>
+
+<p>🍎 Snacks: ${nutrition.snacks.join(", ")}</p>
+
+
+</div>
+
+
+`;
+
+}
 
 
 
@@ -759,6 +929,7 @@ Reset Progress
 
 
 }
+
 
 
 
