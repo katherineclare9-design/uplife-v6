@@ -1,150 +1,146 @@
 /* =====================
-   GLOBAL
-===================== */
-
-* {
-    box-sizing: border-box;
-}
+   UpLift Global Style
+   ===================== */
 
 
-body {
+*{
 
-    margin: 0;
-
-    padding: 20px;
-
-    font-family: Arial, sans-serif;
-
-    transition: 0.3s;
+    box-sizing:border-box;
 
 }
 
 
 
-button {
+body{
 
-    border: none;
+    margin:0;
 
-    cursor: pointer;
+    padding:0;
 
-    font-size: 16px;
+    font-family:"Permanent Marker", cursive;
 
-    padding: 12px;
+    background:#fff5fb;
 
-    border-radius: 12px;
+    color:#333;
 
 }
 
+
+
+h1,
+h2,
+h3{
+
+    font-family:"Permanent Marker", cursive;
+
+    letter-spacing:1px;
+
+}
+
+
+
+h1{
+
+    text-align:center;
+
+    font-size:38px;
+
+}
+
+
+
+p{
+
+    font-family:"Bangers", cursive;
+
+    font-size:18px;
+
+    letter-spacing:1px;
+
+}
 
 
 
 /* =====================
-   REGULAR THEME
-===================== */
+   APP CONTAINER
+   ===================== */
 
 
-.regular-theme {
+#app{
 
-    background: #ffe6f2;
+    max-width:500px;
 
-    color: #333;
+    margin:auto;
 
-}
+    padding:20px;
 
-
-
-.regular-theme button {
-
-    background: #ff69b4;
-
-    color: white;
+    padding-bottom:100px;
 
 }
-
-
-
-
-
-
-/* =====================
-   VACATION THEME
-===================== */
-
-
-.vacation-theme {
-
-    background: white;
-
-    color: black;
-
-}
-
-
-
-.vacation-theme button {
-
-    background: #f8f5ef;
-
-    color: black;
-
-}
-
-
-
-
-
-/* =====================
-   PERIOD THEME
-===================== */
-
-
-.period-theme {
-
-    background: #b00020;
-
-    color: white;
-
-}
-
-
-
-.period-theme button {
-
-    background: #800020;
-
-    color: white;
-
-}
-
-
-
-
 
 
 
 /* =====================
    CARDS
-===================== */
+   ===================== */
 
 
-.card {
+.card{
 
-    background: rgba(255,255,255,0.8);
+    background:white;
 
-    padding: 20px;
+    border-radius:25px;
 
-    margin: 15px 0;
+    padding:20px;
 
-    border-radius: 20px;
+    margin:15px 0;
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,0.08);
+
+    border:3px solid #ffd6ec;
 
 }
 
 
 
 
-.period-theme .card {
 
-    background: rgba(255,255,255,0.15);
+/* =====================
+   BUTTONS
+   ===================== */
+
+
+button{
+
+    font-family:"Permanent Marker", cursive;
+
+    font-size:16px;
+
+    border:none;
+
+    border-radius:20px;
+
+    padding:12px 18px;
+
+    margin:5px;
+
+    cursor:pointer;
+
+    background:#ff75b5;
+
+    color:white;
+
+    transition:.2s;
+
+}
+
+
+
+button:hover{
+
+    transform:scale(1.05);
 
 }
 
@@ -154,109 +150,35 @@ button {
 
 /* =====================
    INPUTS
-===================== */
+   ===================== */
 
 
 input,
-select {
-
-    width: 100%;
-
-    padding: 12px;
-
-    margin: 8px 0;
-
-    border-radius: 10px;
-
-    border: 1px solid #ccc;
-
-    font-size: 16px;
-
-}
+select,
+textarea{
 
 
+    width:100%;
 
+    padding:12px;
 
+    border-radius:15px;
 
-/* =====================
-   WORKOUT BUTTONS
-===================== */
+    border:2px solid #ffd0e7;
 
+    font-family:"Permanent Marker", cursive;
 
-.workout-button {
-
-    width: 100%;
-
-    min-height: 60px;
-
-    padding: 15px;
-
-    margin: 5px 0;
-
-    border-radius: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    font-size: 17px;
-
-    cursor: pointer;
+    margin-top:5px;
 
 }
 
 
 
-.check-box {
+textarea{
 
-    font-size: 25px;
+    min-height:120px;
 
-}
-
-
-
-.workout-name {
-
-    flex: 1;
-
-    text-align: left;
-
-}
-
-
-
-
-
-/* =====================
-   BADGES
-===================== */
-
-
-.badge-gallery {
-
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-
-    gap: 15px;
-
-}
-
-
-
-.badge-card {
-
-    padding: 15px;
-
-    border-radius: 20px;
-
-    background: white;
-
-    color: black;
-
-    text-align: center;
+    resize:none;
 
 }
 
@@ -266,57 +188,48 @@ select {
 
 /* =====================
    BOTTOM NAV
-===================== */
+   ===================== */
 
 
-.bottom-nav {
+.bottom-nav{
 
-    position: fixed;
+    position:fixed;
 
-    bottom: 0;
+    bottom:0;
 
-    left: 0;
+    left:50%;
 
-    width: 100%;
+    transform:translateX(-50%);
 
-    display: flex;
+    width:100%;
 
-    justify-content: space-around;
+    max-width:500px;
 
-    padding: 10px;
+    background:white;
 
-}
+    border-top:3px solid #ffd6ec;
 
+    display:flex;
 
+    justify-content:space-around;
 
-.regular-theme .bottom-nav {
+    padding:10px;
 
-    background: #ffb6d9;
-
-}
-
-
-
-.vacation-theme .bottom-nav {
-
-    background: #f8f5ef;
+    z-index:10;
 
 }
 
 
 
-.period-theme .bottom-nav {
+.bottom-nav button{
 
-    background: #800020;
+    background:#fff0f8;
 
-}
+    color:#ff5fa7;
 
+    font-size:24px;
 
-
-
-.bottom-nav button {
-
-    padding: 10px 15px;
+    padding:10px;
 
 }
 
@@ -325,79 +238,729 @@ select {
 
 
 /* =====================
-   HEADINGS
-===================== */
+   WORKOUT CHECKBOXES
+   ===================== */
 
 
-h1 {
+.workout-item{
 
-    text-align: center;
+    display:flex;
 
-}
+    align-items:center;
 
+    gap:10px;
 
-h2,
-h3 {
+    background:#fff7fc;
 
-    margin-top: 10px;
+    padding:12px;
 
-}
-/* ARFID checkbox alignment */
+    margin:10px 0;
 
-.arfid-toggle {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    cursor: pointer;
+    border-radius:15px;
 
 }
 
 
-.arfid-toggle input {
 
-    width: 22px;
+.workout-item input{
 
-    height: 22px;
-
-    margin: 0;
+    width:auto;
 
 }
 
 
 
 
-/* Workout buttons */
 
-.workout-button {
+/* =====================
+   THEMES
+   ===================== */
 
-    width: 100%;
 
-    display: flex;
+.regular-theme{
 
-    align-items: center;
-
-    gap: 12px;
-
-    text-align: left;
-
-    min-height: 60px;
+    background:#fff5fb;
 
 }
 
 
-.check-box {
 
-    font-size: 25px;
+.vacation-theme{
+
+    background:#f3fbff;
 
 }
 
 
-.workout-name {
 
-    flex: 1;
+.period-theme{
+
+    background:#fff0f3;
+
+}
+/* =====================
+   TROPHY ROOM
+   ===================== */
+
+
+.badge-gallery{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+
+
+.badge-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:18px;
+
+    text-align:center;
+
+    border:3px solid #eee;
+
+    min-height:220px;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.badge-card h2{
+
+    font-size:45px;
+
+    margin:5px;
+
+}
+
+
+
+.badge-card h3{
+
+    font-size:20px;
+
+}
+
+
+
+.badge-card p{
+
+    font-size:15px;
+
+}
+
+
+
+
+/* =====================
+   LOCKED BADGES
+   ===================== */
+
+
+.badge-card.locked{
+
+    filter:grayscale(100%);
+
+    opacity:.55;
+
+    background:#e8e8e8;
+
+    border-color:#ccc;
+
+}
+
+
+
+.badge-card.locked::after{
+
+    content:"🔒 LOCKED";
+
+    position:absolute;
+
+    top:10px;
+
+    right:10px;
+
+    font-family:"Bangers", cursive;
+
+    font-size:14px;
+
+}
+
+
+
+
+/* =====================
+   UNLOCKED BADGES
+   ===================== */
+
+
+.badge-card.unlocked{
+
+    animation:badgeGlow 2s infinite alternate;
+
+}
+
+
+
+@keyframes badgeGlow{
+
+    from{
+
+        box-shadow:
+
+        0 0 10px rgba(255,105,180,.3);
+
+    }
+
+
+    to{
+
+        box-shadow:
+
+        0 0 25px rgba(255,105,180,.8);
+
+    }
+
+}
+
+
+
+
+.badge-card.unlocked:hover{
+
+    transform:translateY(-5px) rotate(-1deg);
+
+}
+
+
+
+
+
+
+/* =====================
+   RARITIES
+   ===================== */
+
+
+.common{
+
+    border-color:#cfcfcf;
+
+}
+
+
+
+.rare{
+
+    border-color:#70b7ff;
+
+}
+
+
+
+.epic{
+
+    border-color:#c77dff;
+
+}
+
+
+
+.legendary{
+
+    border-color:#ffca3a;
+
+    animation:legendaryPulse 1.5s infinite alternate;
+
+}
+
+
+
+
+@keyframes legendaryPulse{
+
+
+from{
+
+    box-shadow:0 0 10px rgba(255,200,50,.4);
+
+}
+
+
+to{
+
+    box-shadow:0 0 30px rgba(255,200,50,.9);
+
+}
+
+
+}
+
+
+
+
+.rarity{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    background:#fff0f8;
+
+    font-family:"Bangers",cursive;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+
+
+/* =====================
+   PROGRESS BARS
+   ===================== */
+
+
+.progress-bar{
+
+    width:100%;
+
+    height:18px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:10px 0;
+
+}
+
+
+
+.progress-fill{
+
+    height:100%;
+
+    width:0%;
+
+    background:#ff75b5;
+
+    border-radius:20px;
+
+    transition:1s;
+
+}
+
+
+
+
+
+
+/* =====================
+   NEXT BADGE CARD
+   ===================== */
+
+
+.card h2{
+
+    font-family:"Permanent Marker",cursive;
+
+}
+
+
+
+
+
+/* =====================
+   SMALL SCREENS
+   ===================== */
+
+
+@media(max-width:400px){
+
+
+.badge-gallery{
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+h1{
+
+    font-size:32px;
+
+}
+
+
+}
+/* =====================
+   NUTRITION PAGE
+   ===================== */
+
+
+#app .nutrition-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:20px;
+
+}
+
+
+
+
+
+/* Nutrition sections */
+
+
+.card h2{
+
+    margin-top:5px;
+
+}
+
+
+
+
+
+/* =====================
+   MACROS
+   ===================== */
+
+
+.card p{
+
+    line-height:1.5;
+
+}
+
+
+
+.card p::first-letter{
+
+    font-size:20px;
+
+}
+
+
+
+
+
+/* =====================
+   WATER TRACKER
+   ===================== */
+
+
+button{
+
+    box-shadow:
+
+    0 5px 10px rgba(0,0,0,.08);
+
+}
+
+
+
+button:active{
+
+    transform:scale(.95);
+
+}
+
+
+
+
+
+/* =====================
+   MEAL DISPLAY
+   ===================== */
+
+
+.card p{
+
+    background:#fff7fc;
+
+    padding:8px;
+
+    border-radius:12px;
+
+}
+
+
+
+
+
+/* =====================
+   FOOD LISTS
+   ===================== */
+
+
+.card input + button{
+
+    margin-top:10px;
+
+}
+
+
+
+.card h2{
+
+    color:#ff5fa7;
+
+}
+
+
+
+
+
+/* =====================
+   NOTES BOX
+   ===================== */
+
+
+textarea{
+
+    background:#fffaff;
+
+    color:#333;
+
+}
+
+
+
+
+
+
+/* =====================
+   ARFID SUPPORT STYLE
+   ===================== */
+
+
+.arfid-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#f0fff7;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    border:3px solid #b8f2d0;
+
+}
+
+
+
+.arfid-toggle input{
+
+    width:auto;
+
+}
+
+
+
+
+
+/* =====================
+   EXTRA APP DETAILS
+   ===================== */
+
+
+hr{
+
+    border:none;
+
+    border-top:2px dashed #ffd6ec;
+
+    margin:20px 0;
+
+}
+
+
+
+
+span{
+
+    font-family:"Permanent Marker",cursive;
+
+}
+
+
+
+
+/* =====================
+   ANIMATIONS
+   ===================== */
+
+
+.card{
+
+    animation:cardEnter .3s ease;
+
+}
+
+
+
+@keyframes cardEnter{
+
+
+from{
+
+    opacity:0;
+
+    transform:translateY(10px);
+
+}
+
+
+to{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+}
+
+
+
+
+
+
+/* =====================
+   MOBILE POLISH
+   ===================== */
+
+
+@media(max-width:500px){
+
+
+#app{
+
+    padding:15px;
+
+    padding-bottom:90px;
+
+}
+
+
+
+button{
+
+    width:auto;
+
+}
+
+
+
+.card{
+
+    padding:15px;
+
+}
+
+
+
+input,
+select,
+textarea{
+
+    font-size:16px;
+
+}
+
+
+
+.bottom-nav button{
+
+    font-size:22px;
+
+}
+
+
+}
+
+
+
+
+
+/* =====================
+   FUN DISTRESSED ACCENTS
+   ===================== */
+
+
+h1::after{
+
+
+content:" ✦";
+
+
+font-family:"Bangers",cursive;
+
+
+}
+
+
+
+h2::after{
+
+
+content:"";
+
+
+}
+
+
+
+
+/* =====================
+   SCROLL STYLE
+   ===================== */
+
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+    border-radius:20px;
 
 }
