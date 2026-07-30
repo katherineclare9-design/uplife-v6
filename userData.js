@@ -32,6 +32,28 @@ const defaultUserData = {
 
     workoutsCompleted: 0,
 
+nutrition: {
+
+    calories: 0,
+
+    protein: 0,
+
+    carbs: 0,
+
+    fat: 0,
+
+    water: 0,
+
+    breakfast: [],
+
+    lunch: [],
+
+    dinner: [],
+
+    snacks: []
+
+}
+
     // =====================
     // DAILY WORKOUTS
     // =====================
