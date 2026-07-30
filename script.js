@@ -39,15 +39,19 @@ function applyTheme(){
         document.body.classList.add("regular-theme");
     }
 
+
     if(userData.mode === "Vacation"){
         document.body.classList.add("vacation-theme");
     }
+
 
     if(userData.mode === "Period"){
         document.body.classList.add("period-theme");
     }
 
 }
+
+
 
 
 
@@ -71,11 +75,14 @@ function createProfile(){
     document.getElementById("goal").value;
 
 
+
     userData.profileDate =
     new Date().toLocaleDateString();
 
 
+
     userData.profileCreated = true;
+
 
 
     saveUserData();
@@ -88,6 +95,7 @@ function createProfile(){
 
 
 }
+
 
 
 
@@ -121,6 +129,8 @@ function addXP(amount){
 
 
 }
+
+
 
 
 
@@ -165,37 +175,51 @@ function completeWorkout(workoutName){
 
 
             case "core":
+
                 userData.coreWorkouts++;
+
                 break;
 
 
             case "strength":
+
                 userData.strengthWorkouts++;
+
                 break;
 
 
             case "backspot":
+
                 userData.backspotWorkouts++;
+
                 break;
 
 
             case "flexibility":
+
                 userData.flexibilitySessions++;
+
                 break;
 
 
             case "lowerBody":
+
                 userData.lowerBodyWorkouts++;
+
                 break;
 
 
             case "upperBody":
+
                 userData.upperBodyWorkouts++;
+
                 break;
 
 
             case "jump":
+
                 userData.jumpSessions++;
+
                 break;
 
 
@@ -212,7 +236,11 @@ function completeWorkout(workoutName){
     checkBadges();
 
 
+
 }
+
+
+
 
 
 
@@ -224,15 +252,30 @@ function completeWorkout(workoutName){
 
 function addWater(){
 
-    userData.waterToday++;
 
-    addXP(5);
+    if(userData.waterToday < userData.waterGoal){
+
+
+        userData.waterToday++;
+
+
+        addXP(5);
+
+
+    }
+
+
 
     saveUserData();
 
+
     showPage("nutrition");
 
+
 }
+
+
+
 
 
 
@@ -260,6 +303,7 @@ function addMeal(){
 
 
 
+
     if(name === ""){
 
         return;
@@ -268,33 +312,50 @@ function addMeal(){
 
 
 
+
+
     userData.meals.push({
+
 
         name:name,
 
+
         calories:calories,
+
 
         protein:protein,
 
+
         carbs:carbs,
 
+
         fats:fats
+
 
     });
 
 
 
+
+
     userData.caloriesToday += calories;
+
 
     userData.proteinToday += protein;
 
+
     userData.carbsToday += carbs;
+
 
     userData.fatsToday += fats;
 
 
 
+
+
     addXP(10);
+
+
 
 
 
@@ -309,11 +370,56 @@ function addMeal(){
 
 
 
+
+
+function deleteMeal(index){
+
+
+
+    const meal = userData.meals[index];
+
+
+
+    userData.caloriesToday -= meal.calories;
+
+
+    userData.proteinToday -= meal.protein;
+
+
+    userData.carbsToday -= meal.carbs;
+
+
+    userData.fatsToday -= meal.fats;
+
+
+
+    userData.meals.splice(index,1);
+
+
+
+    saveUserData();
+
+
+
+    showPage("nutrition");
+
+
+
+}
+
+
+
+
+
+
 function addFood(type){
 
 
+
     const input =
+
     document.getElementById(type + "Input");
+
 
 
     if(input.value === ""){
@@ -324,24 +430,25 @@ function addFood(type){
 
 
 
-    if(!userData[type]){
-
-        userData[type] = [];
-
-    }
-
-
-
     userData[type].push(input.value);
+
+
+
+    input.value = "";
+
 
 
     saveUserData();
 
 
+
     showPage("nutrition");
 
 
+
 }
+
+
 
 
 
@@ -351,25 +458,25 @@ function saveNutritionNotes(){
 
 
     userData.nutritionNotes =
+
     document.getElementById("nutritionNotes").value;
+
 
 
     saveUserData();
 
 
+
 }
-
-
-
 // =====================
 // PAGE DISPLAY
 // =====================
-
 
 function showPage(page){
 
 
 let content = "";
+
 
 
 // =====================
@@ -398,20 +505,35 @@ content = `
 
 <div class="card">
 
-<h3>🔥 Streak</h3>
+<h3>🔥 Workout Streak</h3>
 
 <p>${userData.streak} Days</p>
 
 </div>
 
 
+
+<div class="card">
+
+<h3>🥗 Nutrition Streak</h3>
+
+<p>${userData.nutritionStreak} Days</p>
+
+</div>
+
+
 `;
 
-
 }
-    // =====================
+
+
+
+
+
+// =====================
 // TRAINING
 // =====================
+
 
 if(page === "training"){
 
@@ -480,6 +602,7 @@ onchange="completeWorkout('${item}')"
 
 
 }
+
 
 else{
 
@@ -587,7 +710,12 @@ onchange="completeWorkout('${item}')"
 
 }
 
+
+
 }
+
+
+
 
 
 
@@ -600,10 +728,76 @@ onchange="completeWorkout('${item}')"
 if(page === "nutrition"){
 
 
+
+const caloriePercent =
+Math.min(
+(userData.caloriesToday / userData.calorieGoal) * 100,
+100
+);
+
+
+const proteinPercent =
+Math.min(
+(userData.proteinToday / userData.proteinGoal) * 100,
+100
+);
+
+
+const carbPercent =
+Math.min(
+(userData.carbsToday / userData.carbGoal) * 100,
+100
+);
+
+
+const fatPercent =
+Math.min(
+(userData.fatsToday / userData.fatGoal) * 100,
+100
+);
+
+
+const waterPercent =
+Math.min(
+(userData.waterToday / userData.waterGoal) * 100,
+100
+);
+
+
+
+
+
 content = `
 
 
 <h1>🥗 Nutrition</h1>
+
+
+
+
+
+${userData.arfidSupport ? `
+
+
+<div class="card">
+
+
+<h2>💚 Comfortable Eating Mode</h2>
+
+
+<p>
+
+Focus on fueling your body. Every step counts.
+
+</p>
+
+
+</div>
+
+
+` : ""}
+
+
 
 
 
@@ -624,17 +818,12 @@ ${userData.calorieGoal}
 </h3>
 
 
+
 <div class="progress-bar">
 
 <div class="progress-fill"
 
-style="width:${
-Math.min(
-(userData.caloriesToday /
-userData.calorieGoal) * 100,
-100
-)
-}%">
+style="width:${caloriePercent}%">
 
 </div>
 
@@ -642,6 +831,8 @@ userData.calorieGoal) * 100,
 
 
 </div>
+
+
 
 
 
@@ -650,17 +841,82 @@ userData.calorieGoal) * 100,
 <div class="card">
 
 
-<h2>💪 Macros</h2>
+<h2>💪 Protein</h2>
 
 
-<p>Protein: ${userData.proteinToday}g</p>
+<p>
 
-<p>Carbs: ${userData.carbsToday}g</p>
+${userData.proteinToday}g /
 
-<p>Fats: ${userData.fatsToday}g</p>
+${userData.proteinGoal}g
+
+</p>
+
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+
+style="width:${proteinPercent}%">
+
+</div>
+
+</div>
+
+
+
+<h2>🍞 Carbs</h2>
+
+
+<p>
+
+${userData.carbsToday}g /
+
+${userData.carbGoal}g
+
+</p>
+
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+
+style="width:${carbPercent}%">
+
+</div>
+
+</div>
+
+
+
+
+
+<h2>🥑 Fats</h2>
+
+
+<p>
+
+${userData.fatsToday}g /
+
+${userData.fatGoal}g
+
+</p>
+
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+
+style="width:${fatPercent}%">
+
+</div>
+
+</div>
+
 
 
 </div>
+
 
 
 
@@ -673,17 +929,40 @@ userData.calorieGoal) * 100,
 <h2>💧 Water</h2>
 
 
-<h3>${userData.waterToday}/8 cups</h3>
+<p>
+
+${userData.waterToday}
+
+/
+
+${userData.waterGoal}
+
+cups
+
+</p>
+
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+
+style="width:${waterPercent}%">
+
+</div>
+
+</div>
+
 
 
 <button onclick="addWater()">
 
-+ Add Water
+💧 Add Water
 
 </button>
 
 
 </div>
+
 
 
 
@@ -700,31 +979,17 @@ userData.calorieGoal) * 100,
 <input id="mealName" placeholder="Food name">
 
 
-<br><br>
-
-
 <input id="mealCalories" placeholder="Calories" type="number">
-
-
-<br><br>
 
 
 <input id="mealProtein" placeholder="Protein (g)" type="number">
 
 
-<br><br>
-
-
 <input id="mealCarbs" placeholder="Carbs (g)" type="number">
-
-
-<br><br>
 
 
 <input id="mealFats" placeholder="Fats (g)" type="number">
 
-
-<br><br>
 
 
 <button onclick="addMeal()">
@@ -735,8 +1000,10 @@ Save Meal
 
 
 </div>
+// CONTINUED FROM NUTRITION PAGE
 
 
+content += `
 
 
 
@@ -745,7 +1012,7 @@ Save Meal
 <div class="card">
 
 
-<h2>🍴 Today's Meals</h2>
+<h2>🍽️ Today's Meals</h2>
 
 
 
@@ -758,21 +1025,54 @@ userData.meals.length === 0
 
 :
 
-userData.meals.map(meal => `
+userData.meals.map((meal,index)=>`
+
+
+<div class="card">
+
+
+<h3>🍴 ${meal.name}</h3>
+
 
 <p>
 
-🍽️ ${meal.name}
+🔥 ${meal.calories} calories
 
-<br>
+</p>
 
-🔥 ${meal.calories} cal
 
-|
+<p>
 
 💪 ${meal.protein}g protein
 
 </p>
+
+
+<p>
+
+🍞 ${meal.carbs}g carbs
+
+</p>
+
+
+<p>
+
+🥑 ${meal.fats}g fats
+
+</p>
+
+
+
+<button onclick="deleteMeal(${index})">
+
+🗑️ Remove
+
+</button>
+
+
+
+</div>
+
 
 `).join("")
 
@@ -781,6 +1081,7 @@ userData.meals.map(meal => `
 
 
 </div>
+
 
 
 
@@ -804,7 +1105,7 @@ Add
 
 
 
-${userData.favoriteFoods.map(food => `
+${userData.favoriteFoods.map(food=>`
 
 <p>⭐ ${food}</p>
 
@@ -836,7 +1137,7 @@ Add
 
 
 
-${userData.safeFoods.map(food => `
+${userData.safeFoods.map(food=>`
 
 <p>🛡️ ${food}</p>
 
@@ -844,6 +1145,7 @@ ${userData.safeFoods.map(food => `
 
 
 </div>
+
 
 
 
@@ -867,7 +1169,7 @@ Add
 
 
 
-${userData.foodsToTry.map(food => `
+${userData.foodsToTry.map(food=>`
 
 <p>🌱 ${food}</p>
 
@@ -885,14 +1187,18 @@ ${userData.foodsToTry.map(food => `
 <div class="card">
 
 
-<h2>📝 Nutrition Notes</h2>
+<h2>📝 Notes</h2>
 
 
-<textarea id="nutritionNotes"
+<textarea
+
+id="nutritionNotes"
 
 onchange="saveNutritionNotes()"
 
-placeholder="How did eating feel today?">${userData.nutritionNotes}</textarea>
+placeholder="Write anything about your nutrition today..."
+
+>${userData.nutritionNotes}</textarea>
 
 
 </div>
@@ -904,7 +1210,6 @@ placeholder="How did eating feel today?">${userData.nutritionNotes}</textarea>
 
 
 }
-
 
 
 
@@ -934,11 +1239,7 @@ content = `
 <input id="profileName" placeholder="Name">
 
 
-<br><br>
-
-
 <select id="athleteType">
-
 
 <option>Cheer Athlete</option>
 
@@ -946,17 +1247,11 @@ content = `
 
 <option>Flexibility Athlete</option>
 
-
 </select>
-
-
-<br><br>
 
 
 <input id="goal" placeholder="Goal">
 
-
-<br><br>
 
 
 <button onclick="createProfile()">
@@ -1018,23 +1313,17 @@ content = `
 
 <p>💪 Strength: ${userData.strengthWorkouts}</p>
 
-<p>🏋️ Upper Body: ${userData.upperBodyWorkouts}</p>
-
-<p>🦵 Lower Body: ${userData.lowerBodyWorkouts}</p>
-
 <p>🤸 Backspot: ${userData.backspotWorkouts}</p>
 
 <p>🩰 Flexibility: ${userData.flexibilitySessions}</p>
+
+<p>💪 Workouts: ${userData.workoutsCompleted}</p>
 
 
 <hr>
 
 
-<p>⭐ Level: ${userData.level}</p>
-
-<p>XP: ${userData.xp}</p>
-
-<p>💪 Workouts: ${userData.workoutsCompleted}</p>
+<p>⭐ Level ${userData.level}</p>
 
 
 </div>
@@ -1046,25 +1335,25 @@ content = `
 
 
 }
-    // =====================
+
+
+
+
+
+
+
+// =====================
 // TROPHY ROOM
 // =====================
+
 
 if(page === "badges"){
 
 
-const unlocked =
-userData.unlockedBadges.length;
+const total = Object.keys(badges).length;
 
 
-const total =
-Object.keys(badges).length;
-
-
-
-let nextBadge =
-Object.keys(badges)
-.find(id => !userData.unlockedBadges.includes(id));
+const unlocked = userData.unlockedBadges.length;
 
 
 
@@ -1074,80 +1363,17 @@ content = `
 <h1>🏆 Trophy Room</h1>
 
 
-
-<div class="card">
-
-<h2>🏅 Badges Earned</h2>
-
-<h1>${unlocked}/${total}</h1>
-
-</div>
-
-
-
-
-
-${nextBadge ? `
-
 <div class="card">
 
 
-<h2>🎯 Next Badge</h2>
+<h2>
 
+🏅 ${unlocked}/${total} Badges
 
-<h3>
-
-${badges[nextBadge].icon}
-
-${badges[nextBadge].name}
-
-</h3>
-
-
-<p>
-
-${badges[nextBadge].description}
-
-</p>
-
-
-
-<div class="progress-bar">
-
-<div class="progress-fill"
-
-style="width:${
-Math.min(
-(
-badges[nextBadge].progress()
-/
-badges[nextBadge].goal
-)
-*100,
-100
-)
-}%">
-
-</div>
-
-</div>
-
-
-<p>
-
-${badges[nextBadge].progress()}
-
-/
-
-${badges[nextBadge].goal}
-
-</p>
+</h2>
 
 
 </div>
-
-
-` : ""}
 
 
 
@@ -1156,7 +1382,7 @@ ${badges[nextBadge].goal}
 <div class="badge-gallery">
 
 
-${Object.keys(badges).map(id => {
+${Object.keys(badges).map(id=>{
 
 
 const badge = badges[id];
@@ -1172,25 +1398,23 @@ return `
 
 <div class="badge-card
 
-${earned ? "unlocked" : "locked"}
+${earned ? "unlocked":"locked"}
 
 ${badge.rarity.toLowerCase()}">
 
 
 <h2>
 
-${earned ? badge.icon : "🔒"}
+${earned ? badge.icon:"🔒"}
 
 </h2>
 
 
-
 <h3>
 
-${earned ? badge.name : "Locked Badge"}
+${earned ? badge.name:"Locked Badge"}
 
 </h3>
-
 
 
 <p>
@@ -1200,13 +1424,11 @@ ${badge.description}
 </p>
 
 
-
 <span class="rarity">
 
 ⭐ ${badge.rarity}
 
 </span>
-
 
 
 </div>
@@ -1222,6 +1444,8 @@ ${badge.description}
 
 `;
 
+
+
 }
 
 
@@ -1233,6 +1457,7 @@ ${badge.description}
 // =====================
 // SETTINGS
 // =====================
+
 
 if(page === "settings"){
 
@@ -1247,7 +1472,7 @@ content = `
 <div class="card">
 
 
-<h3>🌈 App Mode</h3>
+<h2>🌈 App Mode</h2>
 
 
 <button onclick="changeMode('Regular')">
@@ -1281,8 +1506,7 @@ content = `
 <div class="card">
 
 
-<h3>🥗 Nutrition</h3>
-
+<h2>🥗 Nutrition Support</h2>
 
 
 <label class="arfid-toggle">
@@ -1292,22 +1516,17 @@ content = `
 
 type="checkbox"
 
-${userData.arfidSupport ? "checked" : ""}
+${userData.arfidSupport ? "checked":""}
 
 onclick="toggleARFID()"
 
 >
 
 
-<span>
-
-ARFID Support Feature
-
-</span>
+ARFID Support Mode
 
 
 </label>
-
 
 
 </div>
@@ -1331,7 +1550,6 @@ Reset Progress
 </div>
 
 
-
 `;
 
 
@@ -1344,7 +1562,7 @@ Reset Progress
 
 
 // =====================
-// RENDER PAGE
+// NAVIGATION
 // =====================
 
 
@@ -1401,6 +1619,7 @@ app.innerHTML = content + `
 </button>
 
 
+
 </div>
 
 
@@ -1413,10 +1632,13 @@ app.innerHTML = content + `
 
 
 
+
 // =====================
 // START APP
 // =====================
 
+
 applyTheme();
+
 
 showPage("home");
