@@ -3,7 +3,7 @@
 ===================== */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Merienda:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Winky+Rough:wght@400;500;600;700&display=swap');
 
 
 
@@ -16,13 +16,14 @@
 
 
 
+
 body{
 
     margin:0;
 
     padding:0;
 
-    font-family:'Handlee', cursive;
+    font-family:'Averia Libre', cursive;
 
     background:#ffe6f2;
 
@@ -36,12 +37,11 @@ body{
 
 
 
-
 h1,
 h2,
 h3{
 
-    font-family:'Merienda', cursive;
+    font-family:'Winky Rough', cursive;
 
     letter-spacing:1px;
 
@@ -53,9 +53,9 @@ h3{
 
 button{
 
-    font-family:'Handlee', cursive;
+    font-family:'Winky Rough', cursive;
 
-    font-weight:bold;
+    font-weight:600;
 
     font-size:16px;
 
@@ -87,7 +87,6 @@ button:hover{
 
 
 
-
 input,
 select,
 textarea{
@@ -102,7 +101,7 @@ textarea{
 
     border:none;
 
-    font-family:'Handlee', cursive;
+    font-family:'Averia Libre', cursive;
 
     font-size:16px;
 
@@ -166,6 +165,7 @@ textarea{
 
 
 
+
 /* =====================
    WORKOUT ITEMS
 ===================== */
@@ -198,6 +198,7 @@ textarea{
     width:auto;
 
 }
+
 
 
 
@@ -299,10 +300,10 @@ body.regular-theme .bottom-nav{
 
 
 
+
 /* =====================
    VACATION MODE
 ===================== */
-
 
 
 body.vacation-theme{
@@ -506,7 +507,7 @@ body.period-theme .bottom-nav button{
 
 }
 /* =====================
-   BADGE POLISH
+   BADGES
 ===================== */
 
 
