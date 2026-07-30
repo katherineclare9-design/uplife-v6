@@ -1,0 +1,403 @@
+/* =====================
+   GLOBAL
+===================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+
+    transition: 0.3s;
+
+}
+
+
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+}
+
+
+
+
+/* =====================
+   REGULAR THEME
+===================== */
+
+
+.regular-theme {
+
+    background: #ffe6f2;
+
+    color: #333;
+
+}
+
+
+
+.regular-theme button {
+
+    background: #ff69b4;
+
+    color: white;
+
+}
+
+
+
+
+
+
+/* =====================
+   VACATION THEME
+===================== */
+
+
+.vacation-theme {
+
+    background: white;
+
+    color: black;
+
+}
+
+
+
+.vacation-theme button {
+
+    background: #f8f5ef;
+
+    color: black;
+
+}
+
+
+
+
+
+/* =====================
+   PERIOD THEME
+===================== */
+
+
+.period-theme {
+
+    background: #b00020;
+
+    color: white;
+
+}
+
+
+
+.period-theme button {
+
+    background: #800020;
+
+    color: white;
+
+}
+
+
+
+
+
+
+
+/* =====================
+   CARDS
+===================== */
+
+
+.card {
+
+    background: rgba(255,255,255,0.8);
+
+    padding: 20px;
+
+    margin: 15px 0;
+
+    border-radius: 20px;
+
+}
+
+
+
+
+.period-theme .card {
+
+    background: rgba(255,255,255,0.15);
+
+}
+
+
+
+
+
+/* =====================
+   INPUTS
+===================== */
+
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin: 8px 0;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 16px;
+
+}
+
+
+
+
+
+/* =====================
+   WORKOUT BUTTONS
+===================== */
+
+
+.workout-button {
+
+    width: 100%;
+
+    min-height: 60px;
+
+    padding: 15px;
+
+    margin: 5px 0;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+}
+
+
+
+.check-box {
+
+    font-size: 25px;
+
+}
+
+
+
+.workout-name {
+
+    flex: 1;
+
+    text-align: left;
+
+}
+
+
+
+
+
+/* =====================
+   BADGES
+===================== */
+
+
+.badge-gallery {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    gap: 15px;
+
+}
+
+
+
+.badge-card {
+
+    padding: 15px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    color: black;
+
+    text-align: center;
+
+}
+
+
+
+
+
+/* =====================
+   BOTTOM NAV
+===================== */
+
+
+.bottom-nav {
+
+    position: fixed;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    padding: 10px;
+
+}
+
+
+
+.regular-theme .bottom-nav {
+
+    background: #ffb6d9;
+
+}
+
+
+
+.vacation-theme .bottom-nav {
+
+    background: #f8f5ef;
+
+}
+
+
+
+.period-theme .bottom-nav {
+
+    background: #800020;
+
+}
+
+
+
+
+.bottom-nav button {
+
+    padding: 10px 15px;
+
+}
+
+
+
+
+
+/* =====================
+   HEADINGS
+===================== */
+
+
+h1 {
+
+    text-align: center;
+
+}
+
+
+h2,
+h3 {
+
+    margin-top: 10px;
+
+}
+/* ARFID checkbox alignment */
+
+.arfid-toggle {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+}
+
+
+.arfid-toggle input {
+
+    width: 22px;
+
+    height: 22px;
+
+    margin: 0;
+
+}
+
+
+
+
+/* Workout buttons */
+
+.workout-button {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-align: left;
+
+    min-height: 60px;
+
+}
+
+
+.check-box {
+
+    font-size: 25px;
+
+}
+
+
+.workout-name {
+
+    flex: 1;
+
+}
