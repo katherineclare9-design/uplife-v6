@@ -771,39 +771,17 @@ app.innerHTML = content + `
 <div class="bottom-nav">
 
 
-<button onclick="showPage('home')">
+<button onclick="showPage('home')">🏠</button>
 
-🏠
+<button onclick="showPage('training')">💪</button>
 
-</button>
+<button onclick="showPage('nutrition')">🥗</button>
 
+<button onclick="showPage('badges')">🏆</button>
 
-<button onclick="showPage('training')">
+<button onclick="showPage('profile')">👤</button>
 
-💪
-
-</button>
-
-
-<button onclick="showPage('badges')">
-
-🏅
-
-</button>
-
-
-<button onclick="showPage('profile')">
-
-👤
-
-</button>
-
-
-<button onclick="showPage('settings')">
-
-⚙️
-
-</button>
+<button onclick="showPage('settings')">⚙️</button>
 
 
 </div>
