@@ -22,6 +22,7 @@ function changeMode(mode){
 
 
 
+
 function toggleARFID(){
 
     userData.arfidSupport = !userData.arfidSupport;
@@ -31,6 +32,7 @@ function toggleARFID(){
     showPage("settings");
 
 }
+
 
 
 
@@ -104,10 +106,13 @@ function createProfile(){
     addDiaryEntry(
         "achievement",
         "Profile Created",
-        "Started your UpLift journey",
+        "Started the UpLift journey",
         10
     );
 
+
+
+    addXP(10);
 
 
     saveUserData();
@@ -143,7 +148,6 @@ function addXP(amount){
     while(userData.xp >= userData.xpToNextLevel){
 
 
-
         userData.xp -= userData.xpToNextLevel;
 
 
@@ -153,11 +157,90 @@ function addXP(amount){
         userData.xpToNextLevel += 100;
 
 
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+// =====================
+// WATER SYSTEM
+// =====================
+
+
+function addWater(){
+
+
+
+    if(userData.waterToday < userData.waterGoal){
+
+
+
+        userData.waterToday++;
+
+
+
+        addXP(5);
+
+
+
+        addDiaryEntry(
+
+            "nutrition",
+
+            "Water Added",
+
+            "Drank 1 cup of water",
+
+            5
+
+        );
+
+
+
+        saveUserData();
+
+
 
     }
 
 
+
+
+    showPage("nutrition");
+
+
+
 }
+
+
+
+
+
+
+
+
+function resetWater(){
+
+
+    userData.waterToday = 0;
+
+
+    saveUserData();
+
+
+    showPage("nutrition");
+
+
+}
+
 
 
 
@@ -186,7 +269,6 @@ function completeWorkout(workoutName){
 
 
 
-
     userData.completedToday.push(workoutName);
 
 
@@ -196,8 +278,8 @@ function completeWorkout(workoutName){
 
 
 
-
     const workout = workoutTypes[workoutName];
+
 
 
 
@@ -207,7 +289,6 @@ function completeWorkout(workoutName){
 
 
         addXP(workout.xp);
-
 
 
 
@@ -270,9 +351,7 @@ function completeWorkout(workoutName){
                 break;
 
 
-
         }
-
 
 
     }
@@ -298,7 +377,6 @@ function completeWorkout(workoutName){
 
 
 
-
     saveUserData();
 
 
@@ -308,8 +386,17 @@ function completeWorkout(workoutName){
 
 
 }
+
+
+
+
+
+
+
+
+
 // =====================
-// NUTRITION FUNCTIONS
+// NUTRITION LOGGING
 // =====================
 
 
@@ -323,7 +410,9 @@ function addNutritionFood(){
 
 
     const calories =
-    Number(document.getElementById("foodCalories").value) || 0;
+    Number(
+    document.getElementById("foodCalories").value
+    ) || 0;
 
 
 
@@ -349,125 +438,60 @@ function addNutritionFood(){
 
 
 
-    addNutritionEntry({
+    const entry = {
 
 
 
         food:food,
 
+
         calories:calories,
+
 
         meal:meal,
 
+
         note:note,
+
 
         date:new Date().toLocaleDateString()
 
 
 
-    });
+    };
 
 
 
 
 
+    userData.nutritionEntries.push(entry);
 
-    showPage("nutrition");
 
 
+    userData.caloriesToday += calories;
 
-}
 
 
 
 
+    addXP(10);
 
 
 
-function saveCurrentMeal(){
+    addDiaryEntry(
 
+        "nutrition",
 
+        food,
 
-    const food =
-    document.getElementById("foodName").value;
+        `${meal} • ${calories} calories`,
 
+        10
 
+    );
 
-    const calories =
-    Number(document.getElementById("foodCalories").value) || 0;
 
 
-
-    const meal =
-    document.getElementById("foodMeal").value;
-
-
-
-
-    if(food === ""){
-
-        return;
-
-    }
-
-
-
-
-    saveMeal({
-
-
-
-        food:food,
-
-        calories:calories,
-
-        meal:meal
-
-
-
-    });
-
-
-
-
-
-
-    showPage("nutrition");
-
-
-
-}
-
-
-
-
-
-
-
-function addSavedMealToDay(index){
-
-
-
-    addSavedMeal(index);
-
-
-
-    showPage("nutrition");
-
-
-}
-
-
-
-
-
-
-
-function removeNutritionEntry(index){
-
-
-
-    userData.nutritionEntries.splice(index,1);
 
 
 
@@ -480,56 +504,35 @@ function removeNutritionEntry(index){
 
 
 }
-
-
-
-
-
-
-
 // =====================
-// DIARY DATE SYSTEM
+// DIARY CONTROLS
 // =====================
 
 
 function changeDiaryDate(amount){
 
 
-
     let current = new Date(
-
         userData.selectedDiaryDate || new Date()
-
     );
-
 
 
     current.setDate(
-
         current.getDate() + amount
-
     );
 
 
-
     userData.selectedDiaryDate =
-
     current.toLocaleDateString();
-
 
 
     saveUserData();
 
 
-
     showPage("diary");
 
 
-
 }
-
-
-
 
 
 
@@ -537,21 +540,59 @@ function changeDiaryDate(amount){
 function resetDiaryDate(){
 
 
-
     userData.selectedDiaryDate =
-
     new Date().toLocaleDateString();
 
 
-
     saveUserData();
-
 
 
     showPage("diary");
 
 
 }
+
+
+
+
+
+
+
+
+// =====================
+// DELETE FOOD ENTRY
+// =====================
+
+
+function removeNutritionEntry(index){
+
+
+    const item =
+    userData.nutritionEntries[index];
+
+
+    if(item){
+
+
+        userData.caloriesToday -= item.calories || 0;
+
+
+        userData.nutritionEntries.splice(index,1);
+
+
+    }
+
+
+
+    saveUserData();
+
+
+    showPage("nutrition");
+
+
+}
+
+
 
 
 
@@ -568,7 +609,6 @@ function showPage(page){
 
 
 let content = "";
-
 
 
 
@@ -615,7 +655,6 @@ ${userData.xp}/${userData.xpToNextLevel} XP
 
 
 
-
 <div class="card">
 
 
@@ -636,21 +675,32 @@ ${userData.streak} Days
 
 
 
-
 <div class="card">
 
 
-<h2>🥗 Nutrition XP</h2>
+<h2>🥗 Today's Nutrition</h2>
 
 
 <p>
 
-${userData.nutritionXP} XP
+Calories: ${userData.caloriesToday}
 
 </p>
 
 
+<p>
+
+💧 Water:
+
+${userData.waterToday}/${userData.waterGoal}
+
+</p>
+
+
+
 </div>
+
+
 
 
 
@@ -677,11 +727,38 @@ if(page === "nutrition"){
 
 
 
+let cups = "";
+
+
+
+for(let i = 0; i < userData.waterGoal; i++){
+
+
+    cups +=
+
+    i < userData.waterToday
+
+    ?
+
+    "💧"
+
+    :
+
+    "⬜";
+
+
+}
+
+
+
+
+
 content = `
 
 
 
-<h1>🥗 Nutrition</h1>
+<h1>🥗 Nutrition Diary</h1>
+
 
 
 
@@ -708,10 +785,22 @@ ${userData.caloriesToday}
 
 
 
+
 <div class="card">
 
 
-<h2>💧 Water</h2>
+<h2>💧 Hydration</h2>
+
+
+
+<div style="font-size:25px">
+
+
+${cups}
+
+
+</div>
+
 
 
 <p>
@@ -722,11 +811,21 @@ ${userData.waterToday}/${userData.waterGoal} cups
 
 
 
+
 <button onclick="addWater()">
 
-💧 Add Water
+➕ Add Cup
 
 </button>
+
+
+
+<button onclick="resetWater()">
+
+Reset
+
+</button>
+
 
 
 </div>
@@ -737,19 +836,36 @@ ${userData.waterToday}/${userData.waterGoal} cups
 
 
 
+
 <div class="card">
 
 
-<h2>🍽️ Log Food</h2>
+<h2>🍽️ Add Food</h2>
 
 
 
-<input id="foodName" placeholder="Food">
+
+
+<input
+
+id="foodName"
+
+placeholder="Food name"
+
+>
 
 
 
-<input id="foodCalories" type="number" placeholder="Calories">
 
+<input
+
+id="foodCalories"
+
+type="number"
+
+placeholder="Calories"
+
+>
 
 
 
@@ -775,7 +891,14 @@ ${userData.waterToday}/${userData.waterGoal} cups
 
 
 
-<textarea id="foodNote" placeholder="Notes"></textarea>
+<textarea
+
+id="foodNote"
+
+placeholder="Notes"
+
+></textarea>
+
 
 
 
@@ -784,23 +907,9 @@ ${userData.waterToday}/${userData.waterGoal} cups
 
 <button onclick="addNutritionFood()">
 
-
-➕ Add Food
-
-</button>
-
-
-
-
-
-
-<button onclick="saveCurrentMeal()">
-
-
-⭐ Save Meal
+➕ Log Food
 
 </button>
-
 
 
 
@@ -811,16 +920,18 @@ ${userData.waterToday}/${userData.waterGoal} cups
 
 
 
+
+
+
 <div class="card">
 
 
-<h2>📋 Today's Food</h2>
+<h2>📋 Food Log</h2>
+
 
 
 
 ${
-
-
 userData.nutritionEntries.length === 0
 
 
@@ -837,17 +948,15 @@ userData.nutritionEntries.map((item,index)=>`
 
 
 
-<div>
+<div class="nutrition-entry">
 
 
-<h3>${item.food}</h3>
+<h3>
 
+🍽️ ${item.food}
 
-<p>
+</h3>
 
-${item.calories} calories
-
-</p>
 
 
 <p>
@@ -857,11 +966,33 @@ ${item.meal}
 </p>
 
 
+
+<p>
+
+🔥 ${item.calories} calories
+
+</p>
+
+
+
+${item.note ? 
+
+`<p>${item.note}</p>`
+
+:
+
+""
+
+}
+
+
+
 <button onclick="removeNutritionEntry(${index})">
 
-🗑️
+🗑️ Remove
 
 </button>
+
 
 
 </div>
@@ -878,11 +1009,14 @@ ${item.meal}
 
 
 
+
+
 `;
 
 
 
 }
+
 
 
 
@@ -929,13 +1063,13 @@ content = `
 
 
 
-<div class="card">
 
+<div class="card">
 
 
 <button onclick="changeDiaryDate(-1)">
 
-⬅ Previous
+⬅️
 
 </button>
 
@@ -951,9 +1085,10 @@ Today
 
 <button onclick="changeDiaryDate(1)">
 
-Next ➡
+➡️
 
 </button>
+
 
 
 
@@ -973,19 +1108,20 @@ ${selected}
 
 
 
+
+
 <div class="card">
 
 
+
 ${
-
-
 entries.length === 0
 
 
 ?
 
 
-"<p>No entries for this day.</p>"
+"<h3>Nothing logged this day 🌱</h3>"
 
 
 :
@@ -1001,7 +1137,6 @@ entries.map(entry=>`
 <h3>
 
 ${
-
 entry.type === "nutrition"
 
 ?
@@ -1022,6 +1157,7 @@ entry.type === "workout"
 
 }
 
+
 ${entry.title}
 
 </h3>
@@ -1033,6 +1169,7 @@ ${entry.title}
 ${entry.details}
 
 </p>
+
 
 
 
@@ -1055,6 +1192,8 @@ ${entry.details}
 
 
 </div>
+
+
 
 
 
@@ -1117,7 +1256,6 @@ content = `
 ${vacationWorkouts.workout.map(item=>`
 
 
-
 <label class="workout-item">
 
 
@@ -1128,6 +1266,7 @@ type="checkbox"
 ${userData.completedToday.includes(item) ? "checked":""}
 
 onchange="completeWorkout('${item}')"
+
 
 >
 
@@ -1174,11 +1313,11 @@ content = `
 
 
 
-
 <div class="card">
 
 
 <h3>🌅 Morning</h3>
+
 
 
 
@@ -1196,6 +1335,7 @@ type="checkbox"
 ${userData.completedToday.includes(item) ? "checked":""}
 
 onchange="completeWorkout('${item}')"
+
 
 >
 
@@ -1221,11 +1361,11 @@ onchange="completeWorkout('${item}')"
 
 
 
-
 <div class="card">
 
 
-<h3>🌙 Nighttime</h3>
+<h3>🌙 Night</h3>
+
 
 
 
@@ -1243,6 +1383,7 @@ type="checkbox"
 ${userData.completedToday.includes(item) ? "checked":""}
 
 onchange="completeWorkout('${item}')"
+
 
 >
 
@@ -1307,14 +1448,15 @@ content = `
 <div class="card">
 
 
+
 <input
 
 id="profileName"
 
 placeholder="Name"
 
->
 
+>
 
 
 
@@ -1335,11 +1477,13 @@ placeholder="Name"
 
 
 
+
 <input
 
 id="goal"
 
 placeholder="Goal"
+
 
 >
 
@@ -1392,6 +1536,7 @@ ${userData.profileName}
 
 
 
+
 <p>
 
 🤸 ${userData.athleteType}
@@ -1427,11 +1572,15 @@ ${userData.profileName}
 <div class="card">
 
 
-<h2>
+<h2>📊 Stats</h2>
 
-📊 Stats
 
-</h2>
+
+<p>
+
+⭐ Level: ${userData.level}
+
+</p>
 
 
 
@@ -1440,16 +1589,6 @@ ${userData.profileName}
 💪 Workouts:
 
 ${userData.workoutsCompleted}
-
-</p>
-
-
-
-<p>
-
-⭐ Level:
-
-${userData.level}
 
 </p>
 
@@ -1467,9 +1606,9 @@ ${userData.nutritionXP}
 
 <p>
 
-🏆 Badges:
+📖 Diary Entries:
 
-${userData.unlockedBadges.length}
+${userData.diaryEntries.length}
 
 </p>
 
@@ -1506,6 +1645,21 @@ if(page === "badges"){
 
 
 
+const unlocked =
+
+userData.unlockedBadges.length;
+
+
+
+const total =
+
+Object.keys(badges).length;
+
+
+
+
+
+
 content = `
 
 
@@ -1516,16 +1670,14 @@ content = `
 
 
 
+
+
 <div class="card">
 
 
 <h2>
 
-🏅 ${userData.unlockedBadges.length}
-
-/
-
-${Object.keys(badges).length}
+🏅 ${unlocked}/${total}
 
 </h2>
 
@@ -1537,7 +1689,11 @@ Badges Earned
 </p>
 
 
+
 </div>
+
+
+
 
 
 
@@ -1568,6 +1724,7 @@ return `
 <div class="badge-card ${earned ? "unlocked":"locked"}">
 
 
+
 <h2>
 
 ${earned ? badge.icon:"🔒"}
@@ -1576,11 +1733,13 @@ ${earned ? badge.icon:"🔒"}
 
 
 
+
 <h3>
 
-${earned ? badge.name:"Locked"}
+${earned ? badge.name:"Locked Badge"}
 
 </h3>
+
 
 
 
@@ -1656,6 +1815,7 @@ content = `
 
 
 
+
 <button onclick="changeMode('Regular')">
 
 💖 Regular
@@ -1689,10 +1849,12 @@ content = `
 
 
 
+
 <div class="card">
 
 
 <h2>🥗 Nutrition Support</h2>
+
 
 
 
@@ -1707,6 +1869,7 @@ ${userData.arfidSupport ? "checked":""}
 
 onclick="toggleARFID()"
 
+
 >
 
 
@@ -1719,7 +1882,6 @@ ARFID Support Mode
 
 
 </div>
-
 
 
 
@@ -1758,7 +1920,7 @@ Reset Progress
 
 
 // =====================
-// BOTTOM NAVIGATION
+// NAVIGATION
 // =====================
 
 
@@ -1838,8 +2000,6 @@ app.innerHTML = content + `
 
 
 
-
-
 </div>
 
 
@@ -1849,7 +2009,6 @@ app.innerHTML = content + `
 
 
 }
-
 
 
 
