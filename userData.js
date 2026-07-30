@@ -1,10 +1,10 @@
 // =====================
-// UpLift User Data v3.0
+// UpLift User Data v4.0
+// Nutrition + Diary Update
 // =====================
 
 
 const defaultUserData = {
-
 
 
 // =====================
@@ -40,7 +40,7 @@ arfidSupport:false,
 
 
 // =====================
-// PROGRESS
+// XP + LEVEL
 // =====================
 
 
@@ -50,21 +50,23 @@ level:1,
 
 xpToNextLevel:100,
 
+
 streak:0,
+
+
+
+
+
+// =====================
+// WORKOUT PROGRESS
+// =====================
 
 
 workoutsCompleted:0,
 
 
-
-
-
-// =====================
-// DAILY WORKOUTS
-// =====================
-
-
 completedToday:[],
+
 
 completedDate:"",
 
@@ -79,6 +81,7 @@ completedDate:"",
 
 unlockedBadges:[],
 
+
 badgeDates:{},
 
 
@@ -86,21 +89,27 @@ badgeDates:{},
 
 
 // =====================
-// WORKOUT STATS
+// WORKOUT TYPES
 // =====================
 
 
 coreWorkouts:0,
 
+
 strengthWorkouts:0,
+
 
 backspotWorkouts:0,
 
+
 flexibilitySessions:0,
+
 
 lowerBodyWorkouts:0,
 
+
 upperBodyWorkouts:0,
+
 
 jumpSessions:0,
 
@@ -113,75 +122,60 @@ jumpSessions:0,
 // =====================
 
 
-calorieGoal:2000,
+// today's calories
+
+caloriesToday:0,
 
 
-proteinGoal:120,
 
+// water
 
-carbGoal:250,
-
-
-fatGoal:70,
-
+waterToday:0,
 
 waterGoal:8,
 
 
 
+// all food logs
 
-
-caloriesToday:0,
-
-
-proteinToday:0,
-
-
-carbsToday:0,
-
-
-fatsToday:0,
-
-
-waterToday:0,
+nutritionEntries:[],
 
 
 
+// saved quick meals
 
-
-// meals logged today
-
-meals:[],
-
+savedMeals:[],
 
 
 
-
-// saved foods
+// foods
 
 safeFoods:[],
 
-
 favoriteFoods:[],
-
 
 foodsToTry:[],
 
 
 
-
-
-// nutrition notes
+// notes
 
 nutritionNotes:"",
 
 
 
 
-// nutrition tracking
 
-nutritionDate:"",
+// =====================
+// DIARY
+// =====================
 
+
+diaryEntries:[],
+
+
+
+// nutrition progress
 
 nutritionStreak:0,
 
@@ -189,11 +183,7 @@ nutritionStreak:0,
 nutritionXP:0,
 
 
-
-// history
-
-nutritionHistory:[]
-
+lastNutritionDate:""
 
 };
 // =====================
@@ -206,6 +196,7 @@ let userData = JSON.parse(
     localStorage.getItem("upliftData")
 
 ) || {};
+
 
 
 
@@ -237,6 +228,7 @@ for(const key in defaultUserData){
 
 
 
+
 // =====================
 // DAILY WORKOUT RESET
 // =====================
@@ -249,13 +241,16 @@ const today = new Date().toLocaleDateString();
 if(userData.completedDate !== today){
 
 
+
     userData.completedToday = [];
 
 
     userData.completedDate = today;
 
 
+
 }
+
 
 
 
@@ -277,84 +272,26 @@ function checkNutritionDay(){
 
 
 
-    if(userData.nutritionDate !== today){
-
-
-
-        // save yesterday's nutrition if food was logged
-
-        if(
-
-            userData.caloriesToday > 0 ||
-
-            userData.meals.length > 0
-
-        ){
-
-
-
-            userData.nutritionHistory.push({
-
-
-                date:userData.nutritionDate,
-
-
-                calories:userData.caloriesToday,
-
-
-                protein:userData.proteinToday,
-
-
-                carbs:userData.carbsToday,
-
-
-                fats:userData.fatsToday,
-
-
-                water:userData.waterToday,
-
-
-                meals:userData.meals
-
-
-
-            });
-
-
-
-        }
-
-
-
+    if(userData.lastNutritionDate !== today){
 
 
 
         userData.caloriesToday = 0;
 
 
-        userData.proteinToday = 0;
-
-
-        userData.carbsToday = 0;
-
-
-        userData.fatsToday = 0;
-
 
         userData.waterToday = 0;
 
 
-        userData.meals = [];
 
 
-
-
-        userData.nutritionDate = today;
+        userData.lastNutritionDate = today;
 
 
 
 
         saveUserData();
+
 
 
     }
@@ -378,11 +315,12 @@ checkNutritionDay();
 
 
 // =====================
-// SAVE DATA
+// SAVE USER DATA
 // =====================
 
 
 function saveUserData(){
+
 
 
     localStorage.setItem(
@@ -401,18 +339,19 @@ function saveUserData(){
 
 
 
+
+
 // =====================
-// NUTRITION HELPERS
+// XP SYSTEM
 // =====================
 
 
-function addNutritionXP(amount){
+function addXP(amount){
 
-
-    userData.nutritionXP += amount;
 
 
     userData.xp += amount;
+
 
 
 
@@ -423,7 +362,9 @@ function addNutritionXP(amount){
         userData.xp -= userData.xpToNextLevel;
 
 
+
         userData.level++;
+
 
 
         userData.xpToNextLevel += 100;
@@ -433,6 +374,7 @@ function addNutritionXP(amount){
     }
 
 
+
 }
 
 
@@ -440,37 +382,132 @@ function addNutritionXP(amount){
 
 
 
-function completeNutritionDay(){
+
+
+// =====================
+// NUTRITION XP
+// =====================
+
+
+function addNutritionXP(amount){
 
 
 
-    if(
-
-        userData.caloriesToday >= userData.calorieGoal
-
-        &&
-
-        userData.waterToday >= userData.waterGoal
-
-    ){
+    userData.nutritionXP += amount;
 
 
 
-        userData.nutritionStreak++;
-
-
-        addNutritionXP(50);
+    addXP(amount);
 
 
 
-    }
+    saveUserData();
 
 
 
-    else{
+}
 
 
-        userData.nutritionStreak = 0;
+
+
+
+
+
+// =====================
+// ADD DIARY ENTRY
+// =====================
+
+
+function addDiaryEntry(type, content){
+
+
+
+    userData.diaryEntries.push({
+
+
+        type:type,
+
+
+        content:content,
+
+
+        date:new Date().toLocaleDateString()
+
+
+    });
+
+
+
+    saveUserData();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================
+// ADD NUTRITION ENTRY
+// =====================
+
+
+function addNutritionEntry(entry){
+
+
+
+    userData.nutritionEntries.push(entry);
+
+
+
+    userData.caloriesToday += entry.calories;
+
+
+
+    addDiaryEntry(
+
+        "nutrition",
+
+        entry.food + " - " + entry.calories + " calories"
+
+    );
+
+
+
+    addNutritionXP(10);
+
+
+
+}
+
+
+
+
+
+
+
+// =====================
+// WATER XP
+// =====================
+
+
+function addWater(){
+
+
+
+    if(userData.waterToday < userData.waterGoal){
+
+
+
+        userData.waterToday++;
+
+
+
+        addNutritionXP(5);
+
 
 
     }
@@ -483,11 +520,135 @@ function completeNutritionDay(){
 
 }
 // =====================
+// SAVE QUICK MEAL
+// =====================
+
+
+function saveMeal(meal){
+
+
+
+    userData.savedMeals.push(meal);
+
+
+
+    addNutritionXP(15);
+
+
+
+    saveUserData();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================
+// ADD SAVED MEAL
+// =====================
+
+
+function addSavedMeal(index){
+
+
+
+    const meal = userData.savedMeals[index];
+
+
+
+    if(!meal){
+
+        return;
+
+    }
+
+
+
+
+    addNutritionEntry({
+
+
+        food:meal.food,
+
+
+        calories:meal.calories,
+
+
+        meal:meal.meal || "Meal",
+
+
+        note:"Saved meal"
+
+
+    });
+
+
+
+}
+
+
+
+
+
+
+
+// =====================
+// NUTRITION STREAK
+// =====================
+
+
+function updateNutritionStreak(){
+
+
+
+    const today = new Date().toLocaleDateString();
+
+
+
+    if(userData.lastNutritionDate !== today){
+
+
+
+        userData.nutritionStreak++;
+
+
+
+        userData.lastNutritionDate = today;
+
+
+
+        addNutritionXP(5);
+
+
+
+    }
+
+
+
+    saveUserData();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================
 // RESET PROGRESS
 // =====================
 
 
 function resetProgress(){
+
 
 
     if(!confirm(
@@ -501,6 +662,7 @@ function resetProgress(){
 
 
     }
+
 
 
 
@@ -520,7 +682,8 @@ function resetProgress(){
 
 
 
-    // Workouts
+
+    // Workout progress
 
     userData.workoutsCompleted = 0;
 
@@ -531,21 +694,6 @@ function resetProgress(){
     userData.completedDate = "";
 
 
-
-
-
-    // Badges
-
-    userData.unlockedBadges = [];
-
-
-    userData.badgeDates = {};
-
-
-
-
-
-    // Workout categories
 
     userData.coreWorkouts = 0;
 
@@ -572,35 +720,32 @@ function resetProgress(){
 
 
 
-    // Nutrition totals
+    // Badges
+
+    userData.unlockedBadges = [];
+
+
+    userData.badgeDates = {};
+
+
+
+
+
+
+
+    // Nutrition
 
     userData.caloriesToday = 0;
-
-
-    userData.proteinToday = 0;
-
-
-    userData.carbsToday = 0;
-
-
-    userData.fatsToday = 0;
 
 
     userData.waterToday = 0;
 
 
+    userData.nutritionEntries = [];
 
 
+    userData.savedMeals = [];
 
-    // Meals
-
-    userData.meals = [];
-
-
-
-
-
-    // Nutrition progress
 
     userData.nutritionXP = 0;
 
@@ -608,7 +753,18 @@ function resetProgress(){
     userData.nutritionStreak = 0;
 
 
-    userData.nutritionHistory = [];
+    userData.lastNutritionDate = "";
+
+
+
+
+
+
+
+    // Diary
+
+    userData.diaryEntries = [];
+
 
 
 
